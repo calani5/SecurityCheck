@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(final VolleyError error) {
                     Log.w(TAG, error.toString());
+                    output.setText("Invalid account or no account breaches have been detected.");
                 }
             });
             requestQueue.add(jsonArrayRequest);
@@ -71,8 +72,11 @@ public class MainActivity extends AppCompatActivity {
     }
     void goThroughArray(final JSONArray response) {
         try {
-            response.getJSONObject(0);
-            output.setText(response.toString());
+            String toShow = "";
+            for (int i = 0; i < response.length(); i++) {
+                toShow += response.getJSONObject(i).getString("Name") + " ";
+            }
+            output.setText("Accounts compromised at: " + toShow);
         } catch (JSONException ignored) {
             System.out.print("shit");
         }
