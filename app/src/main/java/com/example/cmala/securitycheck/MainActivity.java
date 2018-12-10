@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         final Button button = findViewById(R.id.button);
         final EditText input = findViewById(R.id.input);
-
-        output.setMovementMethod(new ScrollingMovementMethod());
+        output = findViewById(R.id.return_statement);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

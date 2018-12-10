@@ -41,7 +41,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
-        android:textSize="10sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:scrollbars = "vertical"
         app:fontFamily="@font/geo"
