@@ -2,6 +2,7 @@ package com.example.cmala.securitycheck;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         final Button button = findViewById(R.id.button);
         final EditText input = findViewById(R.id.input);
-        output = findViewById(R.id.return_statement);
+
+        output.setMovementMethod(new ScrollingMovementMethod());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
