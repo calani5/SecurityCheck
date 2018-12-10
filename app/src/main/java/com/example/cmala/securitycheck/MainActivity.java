@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAPICall(input.getText().toString());
+                if (input.getText().toString().contains("@")) {
+                    output.setText("Invalid account.");
+                } else {
+                    startAPICall(input.getText().toString());
+                }
             }
         });
 
