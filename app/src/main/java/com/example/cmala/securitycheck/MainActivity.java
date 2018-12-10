@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -28,9 +29,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         requestQueue = Volley.newRequestQueue(this);
+        final Button button = findViewById(R.id.button);
+        final EditText input = findViewById(R.id.input);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAPICall(input.getText().toString());
+            }
+        });
+
     }
 
-    void startAPICall() {
+    void startAPICall(String input) {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
