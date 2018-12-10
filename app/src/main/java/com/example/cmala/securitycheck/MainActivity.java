@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         final Button button = findViewById(R.id.button);
         final EditText input = findViewById(R.id.input);
+        final TextView output = findViewById(R.id.return_statement);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
