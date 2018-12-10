@@ -2,12 +2,10 @@ package com.example.cmala.securitycheck;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -23,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "SecurityCheck";
     private static RequestQueue requestQueue;
+    TextView output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         final Button button = findViewById(R.id.button);
         final EditText input = findViewById(R.id.input);
-        final TextView output = findViewById(R.id.return_statement);
+        output = findViewById(R.id.return_statement);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(final JSONObject response) {
                             Log.d(TAG, response.toString());
+                            output.setText(response.toString());
                         }
                     }, new Response.ErrorListener() {
                 @Override
