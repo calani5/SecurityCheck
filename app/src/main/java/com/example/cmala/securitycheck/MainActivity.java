@@ -13,9 +13,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
     void startAPICall(String input) {
         try {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
                     "https://haveibeenpwned.com/api/v2/breachedaccount/" + input + "?truncateResponse=true",
                     null,
-                    new Response.Listener<JSONObject>() {
+                    new Response.Listener<JSONArray>() {
                         @Override
-                        public void onResponse(final JSONObject response) {
+                        public void onResponse(final JSONArray response) {
                             Log.d(TAG, response.toString());
-                            output.setText(response.toString());
+                            goThroughArray(response);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -61,10 +64,18 @@ public class MainActivity extends AppCompatActivity {
                     Log.w(TAG, error.toString());
                 }
             });
-            requestQueue.add(jsonObjectRequest);
+            requestQueue.add(jsonArrayRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+    void goThroughArray(final JSONArray response) {
+        try {
+            response.getJSONObject(0);
+            output.setText(response.toString());
+        } catch (JSONException ignored) {
+            System.out.print("shit");
+        }
     }
 }
