@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         final EditText input = findViewById(R.id.input);
         output = findViewById(R.id.return_statement);
+        output.setMovementMethod(new ScrollingMovementMethod());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
