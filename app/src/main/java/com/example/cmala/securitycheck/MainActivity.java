@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "SecurityCheck";
     private static RequestQueue requestQueue;
     TextView output;
-    char[] passParams = {'C', 'v', 'V', 'N', '#', 'c', 'R'};
+    char[] passParams = {'C', 'v', 'V', 'N', '#', 'c'};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String passwordParams = createPasswordParams();
+                System.out.print(passwordParams);
                 createPassword(passwordParams);
             }
         });
@@ -100,21 +101,21 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int rand;
         String toR = "";
-        for (int i = 0; i < 16; i++) {
+        while(toR.length() < 16) {
             rand = random.nextInt(passParams.length);
-            toR = String.valueOf(passParams[rand]);
+            toR += String.valueOf(passParams[rand]);
         }
         return toR;
     }
     void createPassword(String params) {
         try {
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
                     "https://www.passwordrandom.com/query?command=password&format=json&count=1&scheme=" + params,
                     null,
-                    new Response.Listener<JSONArray>() {
+                    new Response.Listener<JSONObject>() {
                         @Override
-                        public void onResponse(final JSONArray response) {
+                        public void onResponse(final JSONObject response) {
                             Log.d(TAG, response.toString());
                             displayPassword(response);
                         }
@@ -124,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
                     Log.w(TAG, error.toString());
                 }
             });
-            requestQueue.add(jsonArrayRequest);
+            requestQueue.add(jsonObjectRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    void displayPassword(final JSONArray response) {
+    void displayPassword(final JSONObject response) {
         try {
-            output.setText(response.getJSONObject(0).getString("char"));
+            output.setText("Maybe this password is better: " + response.getString("char"));
         } catch (JSONException ignored) {
 
         }
