@@ -93,7 +93,7 @@
 
     <Button
         android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="108dp"
         android:layout_height="57dp"
         android:layout_marginStart="4dp"
@@ -110,4 +110,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="New password!" />
+
 </android.support.constraint.ConstraintLayout>

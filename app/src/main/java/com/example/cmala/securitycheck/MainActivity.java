@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int rand;
         String toR = "";
-        while(toR.length() < random.nextInt(10) + 10) {
+        while(toR.length() < (random.nextInt(10) + 11)) {
             rand = random.nextInt(passParams.length);
             toR += String.valueOf(passParams[rand]);
         }
