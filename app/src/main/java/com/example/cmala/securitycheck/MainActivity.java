@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "SecurityCheck";
     private static RequestQueue requestQueue;
     TextView output;
-    char[] passParams = {'C', 'v', 'V', 'N', '#', 'c'};
+    char[] passParams = {'R', 'N', '!', 'R', 'N', 'R', 'R', 'N', 'R', '!'};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,13 +101,13 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int rand;
         String toR = "";
-        while(toR.length() < 16) {
+        while(toR.length() < random.nextInt(10) + 10) {
             rand = random.nextInt(passParams.length);
             toR += String.valueOf(passParams[rand]);
         }
         return toR;
     }
-    void createPassword(String params) {
+    void createPassword(final String params) {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(final JSONObject response) {
                             Log.d(TAG, response.toString());
+                            //Log.d(TAG, params);
                             displayPassword(response);
                         }
                     }, new Response.ErrorListener() {

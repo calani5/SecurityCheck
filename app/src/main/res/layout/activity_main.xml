@@ -44,7 +44,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:fontFamily="@font/geo"
+        app:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
